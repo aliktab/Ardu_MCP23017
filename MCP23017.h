@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2014 Alik <aliktab@gmail.com> 
+  Copyright (C) 2014 Alik <aliktab@gmail.com> All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@
 #include <inttypes.h>
 #include <limits.h>
 
-class MCP23017 
+class MCP23017
 {
 public:
 
@@ -29,7 +29,7 @@ public:
   MCP23017(uint8_t _i2c_addr);
 
   // Initialize MCP23017 and check it presence.
-  bool initialize();  
+  bool initialize();
 
   // Set pin mode (INPUT or OUTPUT)
   void set_pin_mode(uint8_t _pin, uint8_t _mode);

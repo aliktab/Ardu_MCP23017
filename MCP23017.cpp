@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2014 Alik <aliktab@gmail.com> 
+  Copyright (C) 2014 Alik <aliktab@gmail.com> All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -64,7 +64,7 @@ bool MCP23017::initialize()
   return true;
 }
 
-void MCP23017::set_pin_mode(uint8_t _pin, uint8_t _mode) 
+void MCP23017::set_pin_mode(uint8_t _pin, uint8_t _mode)
 {
   // Only 16 bits available.
   if (_pin > 15) return;
@@ -82,8 +82,8 @@ void MCP23017::set_pin_mode(uint8_t _pin, uint8_t _mode)
   uint8_t iodir = I2c.receive();
 
   // Set the pin and direction.
-  if (INPUT == _mode) 
-    iodir |=  (1 << _pin); 
+  if (INPUT == _mode)
+    iodir |=  (1 << _pin);
   else
     iodir &= ~(1 << _pin);
 
@@ -91,7 +91,7 @@ void MCP23017::set_pin_mode(uint8_t _pin, uint8_t _mode)
   I2c.write(m_i2c_addr, reg_id, iodir);
 }
 
-void MCP23017::pull_up_pin(uint8_t _pin, bool _pull_up) 
+void MCP23017::pull_up_pin(uint8_t _pin, bool _pull_up)
 {
   // Only 16 bits available.
   if (_pin > 15) return;
@@ -109,8 +109,8 @@ void MCP23017::pull_up_pin(uint8_t _pin, bool _pull_up)
   uint8_t gppu = I2c.receive();
 
   // set the pin and direction
-  if (_pull_up) 
-    gppu |=  (1 << _pin); 
+  if (_pull_up)
+    gppu |=  (1 << _pin);
   else
     gppu &= ~(1 << _pin);
 
@@ -118,7 +118,7 @@ void MCP23017::pull_up_pin(uint8_t _pin, bool _pull_up)
   I2c.write(m_i2c_addr, reg_id, gppu);
 }
 
-uint8_t MCP23017::read_pin(uint8_t _pin) const 
+uint8_t MCP23017::read_pin(uint8_t _pin) const
 {
   // Only 16 bits available.
   if (_pin > 15) return 0;
@@ -136,7 +136,7 @@ uint8_t MCP23017::read_pin(uint8_t _pin) const
   return (I2c.receive() >> _pin) & 0x1;
 }
 
-void MCP23017::write_pin(uint8_t _pin, uint8_t _val) 
+void MCP23017::write_pin(uint8_t _pin, uint8_t _val)
 {
   // Only 16 bits available.
   if (_pin > 15) return;
@@ -144,7 +144,7 @@ void MCP23017::write_pin(uint8_t _pin, uint8_t _val)
   // Select register by pin number.
   uint8_t reg_olat = MCP23017_OLATA;
   uint8_t reg_gpio = MCP23017_GPIOA;
-  if (_pin >= 8) 
+  if (_pin >= 8)
   {
     reg_olat = MCP23017_OLATB;
     reg_gpio = MCP23017_GPIOB;
@@ -156,7 +156,7 @@ void MCP23017::write_pin(uint8_t _pin, uint8_t _val)
   uint8_t gpio = I2c.receive();
 
   // Set the pin and direction
-  if (_val) 
+  if (_val)
     gpio |=  (1 << _pin);
   else
     gpio &= ~(1 << _pin);
@@ -165,7 +165,7 @@ void MCP23017::write_pin(uint8_t _pin, uint8_t _val)
   I2c.write(m_i2c_addr, reg_gpio, gpio);
 }
 
-uint16_t MCP23017::read_gpio_ba() const 
+uint16_t MCP23017::read_gpio_ba() const
 {
   uint8_t Data[2] = { 0, 0 };
 
@@ -174,7 +174,7 @@ uint16_t MCP23017::read_gpio_ba() const
   return (Data[1] << 8) | Data[0];
 }
 
-void MCP23017::write_gpio_ba(uint16_t _ba) 
+void MCP23017::write_gpio_ba(uint16_t _ba)
 {
   uint8_t Data[2] =
   {
